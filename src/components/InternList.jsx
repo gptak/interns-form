@@ -9,7 +9,6 @@ const InternList = () => {
       const response = await fetch("http://localhost:3001/interns");
       const interns = await response.json();
       setInterns(interns);
-      console.log(interns);
     };
     fetchInterns();
   }, []);
