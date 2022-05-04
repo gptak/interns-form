@@ -57,6 +57,15 @@
       font-weight: 500;
     }
 
+    ::-webkit-calendar-picker-indicator {
+      position: absolute;
+      right: 15px;
+      height: 44px;
+      background-position: center;
+      padding-left: 15px;
+      border-left: 2px solid #222222;
+    }
+
     &--input {
       background: none;
       border: 2px solid #222222;
@@ -109,5 +118,9 @@
 }
 
 .date {
-  right: 68px;
+  right: 62px;
+}
+
+.outline {
+  outline: 2px solid #a3270c;
 }

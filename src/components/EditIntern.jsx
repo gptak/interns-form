@@ -42,10 +42,12 @@ const EditIntern = () => {
 
   return (
     <main className="edit_intern">
-      <NavLink className="edit_intern-backlink" to="/">
-        <Back />
-        <span>Back to list</span>
-      </NavLink>
+      <nav>
+        <NavLink className="edit_intern-backlink" to="/">
+          <Back />
+          <span>Back to list</span>
+        </NavLink>
+      </nav>
       <div className="edit_intern-container">
         <h2 className="edit_intern-title">Edit</h2>
         <Form
@@ -55,29 +57,24 @@ const EditIntern = () => {
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <div className="edit_intern-form">
-                <Input
-                  name="name"
-                  type="text"
-                  label="Name *"
-                  className={{ size: "big" }}
-                />
+                <Input name="name" type="text" label="Name *" sizeClass="big" />
                 <Input
                   name="email"
                   type="text"
                   label="Email *"
-                  className={{ size: "big" }}
+                  sizeClass="big"
                 />
                 <Input
                   name="internshipStart"
                   type="date"
                   label="Internship start *"
-                  className={{ type: "date" }}
+                  sizeClass="small"
                 />
                 <Input
                   name="internshipEnd"
                   type="date"
                   label="Internship end *"
-                  className={{ type: "date" }}
+                  sizeClass="small"
                 />
               </div>
               <button className="edit_intern-submit_button" type="submit">

@@ -16,8 +16,7 @@ const validate = ({ name, email, internshipStart, internshipEnd }) => {
   }
 
   if (Date.parse(internshipStart) >= Date.parse(internshipEnd)) {
-    errors.internshipEnd =
-      "The end date must be later than the beginning date!";
+    errors.internshipEnd = "The end date must be later than the start date!";
   }
 
   if (!internshipStart) {
