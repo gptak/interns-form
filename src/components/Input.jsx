@@ -1,16 +1,18 @@
 import { Field } from "react-final-form";
 import format from "date-fns/format";
 
-function Input({ name, type, label }) {
+function Input({ name, type, label, className }) {
+  const dataFields = ["internshipStart", "internshipEnd"];
+
   const dateFormat = (value) => {
-    if (value instanceof Date) {
+    if (value && dataFields.includes(name)) {
       return format(value, "yyyy-MM-dd");
     }
     return value;
   };
 
   const dateParse = (value, name) => {
-    if (name === "internshipStart" || name === "internshipEnd") {
+    if (dataFields.includes(name)) {
       return new Date(value);
     }
     return value;
@@ -18,11 +20,19 @@ function Input({ name, type, label }) {
 
   return (
     <Field name={name} format={dateFormat} parse={dateParse}>
-      {({ input, meta }) => (
-        <div>
-          <label>{label}</label>
-          <input {...input} type={type} />
-          {meta.error && meta.touched && <span>{meta.error}</span>}
+      {({ input: { name, value, onChange }, meta: { error, touched } }) => (
+        <div className={className}>
+          <label className="edit_intern-item--label">{label}</label>
+          <input
+            className="edit_intern-item--input"
+            name={name}
+            value={value}
+            onChange={onChange}
+            type={type}
+          />
+          {error && touched && (
+            <div className="edit_intern-item--error">{error}</div>
+          )}
         </div>
       )}
     </Field>

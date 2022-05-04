@@ -1,27 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { Form } from "react-final-form";
 import validate from "../functions/validate";
 import submit from "../functions/submit";
-import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
-import axios from "axios";
+import { ReactComponent as Back } from "../svgs/arrow-left.svg";
+import "../scss/EditIntern.scss";
 
 const EditIntern = () => {
-  const [intern, setIntern] = useState({});
+  const [intern, setIntern] = useState({
+    name: "",
+    email: "",
+    internshipStart: null,
+    internshipEnd: null,
+  });
   const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchIntern = async () => {
-      const url = "http://localhost:3001/interns/" + id;
-      axios.get(url).then((res) => {
-        const data = res.data;
+      const url = `http://localhost:3001/interns/${id}`;
+      axios.get(url).then((response) => {
+        const { data } = response;
+        const { name, email, id } = data;
         const internshipStart = new Date(data.internshipStart);
         const internshipEnd = new Date(data.internshipEnd);
         const newData = {
-          ...data,
+          name,
+          email,
+          id,
           internshipStart,
           internshipEnd,
         };
@@ -32,27 +41,53 @@ const EditIntern = () => {
   }, [id]);
 
   return (
-    <div>
-      <NavLink to="/">Back to list </NavLink>
-      <Form
-        initialValues={intern}
-        onSubmit={(values) => submit(values, navigate)}
-        validate={validate}
-        render={({ handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
-            <Input name="name" type="text" label="Name" />
-            <Input name="email" type="text" label="Email" />
-            <Input
-              name="internshipStart"
-              type="date"
-              label="Internship start"
-            />
-            <Input name="internshipEnd" type="date" label="Internship end" />
-            <button type="submit">Submit</button>
-          </form>
-        )}
-      />
-    </div>
+    <main className="edit_intern">
+      <NavLink className="edit_intern-backlink" to="/">
+        <Back />
+        <span>Back to list</span>
+      </NavLink>
+      <div className="edit_intern-container">
+        <h2 className="edit_intern-title">Edit</h2>
+        <Form
+          initialValues={intern}
+          onSubmit={(values) => submit(values, navigate)}
+          validate={validate}
+          render={({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
+              <div className="edit_intern-form">
+                <Input
+                  name="name"
+                  type="text"
+                  label="Name *"
+                  className="edit_intern-item edit_intern-item--big"
+                />
+                <Input
+                  name="email"
+                  type="text"
+                  label="Email *"
+                  className="edit_intern-item edit_intern-item--big"
+                />
+                <Input
+                  name="internshipStart"
+                  type="date"
+                  label="Internship start *"
+                  className="edit_intern-item"
+                />
+                <Input
+                  name="internshipEnd"
+                  type="date"
+                  label="Internship end *"
+                  className="edit_intern-item"
+                />
+              </div>
+              <button class="edit_intern-submit_button" type="submit">
+                Submit
+              </button>
+            </form>
+          )}
+        />
+      </div>
+    </main>
   );
 };
 
