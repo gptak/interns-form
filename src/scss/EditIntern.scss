@@ -4,10 +4,12 @@
   width: 656px;
 
   &-backlink {
-    display: flex;
     position: absolute;
+    display: flex;
+    align-items: center;
     left: 0;
     top: -80px;
+    font-size: 18px;
     color: #000000;
     font-weight: 500;
     text-decoration: none;
