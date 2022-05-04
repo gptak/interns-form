@@ -12,7 +12,7 @@ function Input({ name, type, label, className }) {
   };
 
   const dateParse = (value, name) => {
-    if (dataFields.includes(name)) {
+    if (value && dataFields.includes(name)) {
       return new Date(value);
     }
     return value;

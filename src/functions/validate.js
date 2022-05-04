@@ -1,6 +1,7 @@
 const validate = ({ name, email, internshipStart, internshipEnd }) => {
   const errors = {};
 
+  console.log(internshipStart, internshipEnd);
   const emailRegExp =
     /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
