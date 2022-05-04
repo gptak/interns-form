@@ -19,6 +19,7 @@
 
     &:hover {
       color: #555555;
+      fill: #555555;
     }
 
     &:focus {
@@ -50,11 +51,6 @@
     flex-direction: column;
     margin-bottom: 20px;
 
-    &--big {
-      grid-column-start: 1;
-      grid-column-end: 3;
-    }
-
     &--label {
       margin-bottom: 5px;
       font-size: 18px;
@@ -78,6 +74,13 @@
       font-size: 16px;
       color: #a3270c;
     }
+
+    &--error_sign {
+      fill: #a3270c;
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+    }
   }
 
   &-submit_button {
@@ -98,4 +101,13 @@
       outline: 2px solid #d3f2ff;
     }
   }
+}
+
+.big {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.date {
+  right: 68px;
 }

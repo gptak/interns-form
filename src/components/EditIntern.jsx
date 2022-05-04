@@ -59,28 +59,28 @@ const EditIntern = () => {
                   name="name"
                   type="text"
                   label="Name *"
-                  className="edit_intern-item edit_intern-item--big"
+                  className={{ size: "big" }}
                 />
                 <Input
                   name="email"
                   type="text"
                   label="Email *"
-                  className="edit_intern-item edit_intern-item--big"
+                  className={{ size: "big" }}
                 />
                 <Input
                   name="internshipStart"
                   type="date"
                   label="Internship start *"
-                  className="edit_intern-item"
+                  className={{ type: "date" }}
                 />
                 <Input
                   name="internshipEnd"
                   type="date"
                   label="Internship end *"
-                  className="edit_intern-item"
+                  className={{ type: "date" }}
                 />
               </div>
-              <button class="edit_intern-submit_button" type="submit">
+              <button className="edit_intern-submit_button" type="submit">
                 Submit
               </button>
             </form>
